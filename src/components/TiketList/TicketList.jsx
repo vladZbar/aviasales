@@ -141,7 +141,7 @@ const TicketList = () => {
       return [...ticketList].filter((ticket) => ticket.segments[0].stops.length === 3).slice(0, amount)
     }
 
-    return [...ticketList].slice(0, amount)
+    return []
   }
 
   const elements = checkBoxSorted(ticketList).map((ticket) => (
@@ -163,8 +163,14 @@ const TicketList = () => {
         />
       ) : (
         <>
-          {elements}
-          <MyButton onClick={clikHandler} />
+          {elements.length ? (
+            <>
+              {elements}
+              <MyButton onClick={clikHandler} />
+            </>
+          ) : (
+            <div>По вашему запросу билетов не найдено</div>
+          )}
         </>
       )}
     </ul>
