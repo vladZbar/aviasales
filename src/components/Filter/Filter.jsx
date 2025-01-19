@@ -9,7 +9,6 @@ const Filter = () => {
   const checkboxes = useSelector((state) => state.filt.checkboxes)
 
   const onChange = (e, checkboxName) => {
-    console.log(`checked = ${e.target.checked}`)
     dispatch(checkboxAction(checkboxName))
     dispatch(defaultFiveTicketsAction())
   }
