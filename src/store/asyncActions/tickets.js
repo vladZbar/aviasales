@@ -3,10 +3,12 @@ import axios from 'axios'
 import { getSearchIdAction, getTicketsAction } from '../ticketReducer'
 
 export const fetchSearchId = () => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState()
+    let flag = state.ticket.stop
     axios
       .get('https://aviasales-test-api.kata.academy/search')
-      .then((response) => dispatch(getSearchIdAction(response.data.searchId)))
+      .then((response) => !flag && dispatch(getSearchIdAction(response.data.searchId)))
       .catch((err) => console.log(err.name, ' ошибка при получении searchId'))
   }
 }
