@@ -13,7 +13,7 @@ const TicketList = () => {
   const amount = useSelector((state) => state.ticket.amount)
   const sortOption = useSelector((state) => state.tabs.sortOption)
   const checkboxes = useSelector((state) => state.filt.checkboxes)
-  const loading = useSelector((state) => state.ticket.loading)
+  const stop = useSelector((state) => state.ticket.stop)
 
   const tickets = useSelector((state) => state.ticket.tickets).slice(0, amount)
   const lowPriceTickets = useSelector((state) => [...state.ticket.tickets].sort((a, b) => a.price - b.price))
@@ -150,29 +150,30 @@ const TicketList = () => {
 
   return (
     <ul className={cl.ticket_container}>
-      {loading ? (
-        <Spin
-          indicator={
-            <LoadingOutlined
-              style={{
-                fontSize: 48,
-              }}
-              spin
-            />
-          }
-        />
-      ) : (
-        <>
-          {elements.length ? (
-            <>
-              {elements}
-              <MyButton onClick={clikHandler} />
-            </>
-          ) : (
-            <div>По вашему запросу билетов не найдено</div>
-          )}
-        </>
-      )}
+      <>
+        {elements.length ? (
+          <>
+            {!stop ? (
+              <Spin
+                indicator={
+                  <LoadingOutlined
+                    style={{
+                      fontSize: 48,
+                    }}
+                    spin
+                  />
+                }
+              />
+            ) : (
+              false
+            )}
+            {elements}
+            <MyButton onClick={clikHandler} />
+          </>
+        ) : (
+          <div>По вашему запросу билетов не найдено</div>
+        )}
+      </>
     </ul>
   )
 }

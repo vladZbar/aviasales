@@ -1,3 +1,13 @@
 .tabs_wrap {
   position: relative;
+  cursor: url('../../assets/Cursor.png'), none !important;
 }
+
+.cursor label {
+  cursor: url('../../assets/Cursor.png'), pointer !important;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+

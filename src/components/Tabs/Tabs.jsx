@@ -30,7 +30,7 @@ const Tabs = () => {
     dispatch(sortOtionAction(newSortOption))
   }
   return (
-    <>
+    <div className={cl.cursor}>
       <Radio.Group
         onChange={handleTabChange}
         className={cl.tabs_wrap}
@@ -41,7 +41,7 @@ const Tabs = () => {
         optionType="button"
         buttonStyle="solid"
       />
-    </>
+    </div>
   )
 }
 
